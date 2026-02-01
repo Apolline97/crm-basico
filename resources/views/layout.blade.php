@@ -11,6 +11,7 @@
             <div class="navbar-nav">
                 <a class="nav-link" href="{{ route('clientes.index') }}">Clientes</a>
                 <a class="nav-link" href="{{ route('productos.index') }}">Productos</a>
+                <a class="nav-link" href="{{ route('proveedores.index') }}">Proveedores</a>
             </div>
         </div>
     </nav>
