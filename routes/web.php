@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ClienteController; // <-- Importante: esto carga tu controlador
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProductoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -9,3 +10,4 @@ Route::get('/', function () {
 
 // Esto crea todas las rutas de tus Clientes de golpe
 Route::resource('clientes', ClienteController::class);
+Route::resource('productos', ProductoController::class);

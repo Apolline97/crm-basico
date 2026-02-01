@@ -10,6 +10,7 @@
             <a class="navbar-brand" href="#">Mi CRM</a>
             <div class="navbar-nav">
                 <a class="nav-link" href="{{ route('clientes.index') }}">Clientes</a>
+                <a class="nav-link" href="{{ route('productos.index') }}">Productos</a>
             </div>
         </div>
     </nav>
