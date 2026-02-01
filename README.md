@@ -1,8 +1,8 @@
 # CRM Básico - Gestión Empresarial
 
-Este proyecto es un CRM (Customer Relationship Management) desarrollado en Laravel como parte de la primera entrega de desarrollo web. Simula una aplicación de gestión empresarial permitiendo administrar la información clave de un negocio.
+Este proyecto es un CRM desarrollado en Laravel. Simula una aplicación de gestión empresarial permitiendo administrar la información clave de un negocio.
 
-## 📋 Módulos Implementados
+## Módulos Implementados
 
 El sistema cuenta con 5 módulos funcionales (CRUD completo: Crear, Leer, Actualizar, Borrar):
 
@@ -12,14 +12,14 @@ El sistema cuenta con 5 módulos funcionales (CRUD completo: Crear, Leer, Actual
 4.  **Categorías**: Clasificación de productos.
 5.  **Empleados**: Gestión de la plantilla de trabajadores.
 
-## 🚀 Requisitos del Sistema
+## Requisitos del Sistema
 
 * PHP 8.2 o superior.
 * Composer.
 * Servidor de Base de Datos (MySQL / MariaDB via XAMPP).
 * Laravel Framework.
 
-## 🔧 Instalación y Puesta en Marcha
+## Para poder iniciarlo
 
 Si descargas este proyecto en un entorno nuevo, sigue estos pasos:
 
@@ -60,10 +60,3 @@ Si descargas este proyecto en un entorno nuevo, sigue estos pasos:
     ```bash
     php artisan serve
     ```
-
-## 👤 Usuarios de prueba
-Actualmente, el sistema es de acceso público y **no requiere inicio de sesión** (Login) para gestionar los módulos.
-
-## ✒️ Autor
-* **Nombre del Alumno** (Apolline97)
-* Enlace al repositorio: [https://github.com/Apolline97/crm-basico](https://github.com/Apolline97/crm-basico)
