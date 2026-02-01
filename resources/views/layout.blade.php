@@ -13,6 +13,7 @@
                 <a class="nav-link" href="{{ route('productos.index') }}">Productos</a>
                 <a class="nav-link" href="{{ route('proveedores.index') }}">Proveedores</a>
                 <a class="nav-link" href="{{ route('categorias.index') }}">Categorías</a>
+                <a class="nav-link" href="{{ route('empleados.index') }}">Empleados</a>
             </div>
         </div>
     </nav>
