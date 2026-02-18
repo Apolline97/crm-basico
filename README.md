@@ -35,6 +35,6 @@ Este proyecto es un sistema de gestión CRM desarrollado en Laravel. Incluye ges
   - Mail: admin@prueba.com
   - Contraseña: 12345678
  
-- EMPLEADO (Acceso total (Ver, Crear, Editar y Borrar))
+- EMPLEADO (Acceso restringido (NO puede borrar))
   - Mail: empleado@prueba.com
   - Contraseña: 12345678
