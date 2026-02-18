@@ -17,3 +17,6 @@ Route::resource('productos', ProductoController::class);
 Route::resource('proveedores', ProveedorController::class);
 Route::resource('categorias', CategoriaController::class);
 Route::resource('empleados', EmpleadoController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

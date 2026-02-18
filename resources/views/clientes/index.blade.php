@@ -30,11 +30,14 @@
                 <td>{{ $cliente->email }}</td>
                 <td>
                     <a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-warning btn-sm">Editar</a>
-                    <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST" style="display:inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Borrar cliente?')">Borrar</button>
-                    </form>
+
+                    @if(Auth::user()->role == 'admin')
+                        <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST" style="display:inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro?')">Borrar</button>
+                        </form>
+                    @endif
                 </td>
             </tr>
             @endforeach
