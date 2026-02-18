@@ -1,4 +1,4 @@
-#✌️ CRM Laravel - Segunda Entrega
+# ✌️ CRM Laravel - Segunda Entrega
 
 Este proyecto es un sistema de gestión CRM desarrollado en Laravel. Incluye gestión de clientes con imágenes, productos con fichas técnicas en PDF, y un sistema de roles y permisos (Admin vs Empleado).
 
@@ -27,7 +27,7 @@ Este proyecto es un sistema de gestión CRM desarrollado en Laravel. Incluye ges
 
 ---
 
-##👤 Usuarios y Contraseñas
+## 👤 Usuarios y Contraseñas
 
 **Rol**              **Email**               **Contraseña**  **Qué puede hacer**
 ADMINISTRADOR        admin@prueba.com        12345678        Acceso total (Ver, Crear, Editar y Borrar)
