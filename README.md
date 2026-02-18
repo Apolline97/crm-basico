@@ -1,62 +1,37 @@
-# CRM Básico - Gestión Empresarial
+# CRM Laravel - Segunda Entrega
 
-Este proyecto es un CRM desarrollado en Laravel. Simula una aplicación de gestión empresarial permitiendo administrar la información clave de un negocio.
+Este proyecto es un sistema de gestión CRM desarrollado en Laravel. Incluye gestión de clientes con imágenes, productos con fichas técnicas en PDF, y un sistema de roles y permisos (Admin vs Empleado).
 
-## Módulos Implementados
+## 🚀 Funcionalidades Implementadas
 
-El sistema cuenta con 5 módulos funcionales (CRUD completo: Crear, Leer, Actualizar, Borrar):
+### 1. Gestión de Clientes (CRUD Completo)
+- Listado avanzado con **DataTables** (Buscador, paginación y ordenación en tiempo real).
+- Subida de **Foto de Perfil** (validación de imágenes y visualización en miniatura).
+- Edición y Eliminación de clientes.
 
-1.  **Clientes** (Obligatorio): Gestión de cartera de clientes (Nombre, Email, Teléfono, Dirección).
-2.  **Productos**: Control de inventario (Precio, Stock, Descripción).
-3.  **Proveedores**: Agenda de proveedores y empresas.
-4.  **Categorías**: Clasificación de productos.
-5.  **Empleados**: Gestión de la plantilla de trabajadores.
+### 2. Gestión de Productos
+- Subida de archivos **PDF** (Fichas técnicas).
+- Botón para descargar/visualizar el PDF subido.
+- Listado con DataTables integrado.
 
-## Requisitos del Sistema
+### 3. Roles y Permisos (Seguridad)
+- **Sistema de Login** con autenticación.
+- Dos roles de usuario:
+  - **Admin:** Acceso total (Ver, Crear, Editar y **Borrar**).
+  - **Usuario/Empleado:** Acceso restringido (Ver, Crear y Editar, pero **NO puede Borrar**).
+- Protección de rutas y ocultación de botones según el rol.
 
-* PHP 8.2 o superior.
-* Composer.
-* Servidor de Base de Datos (MySQL / MariaDB via XAMPP).
-* Laravel Framework.
+### 4. Interfaz
+- Diseño responsivo con **Bootstrap 5**.
+- Integración de menú de navegación dinámico (cambia según si estás logueado o no).
 
-## Para poder iniciarlo
+---
 
-Si descargas este proyecto en un entorno nuevo, sigue estos pasos:
+## 🛠️ Instalación y Configuración
 
-1.  **Clonar el repositorio:**
-    ```bash
-    git clone [https://github.com/Apolline97/crm-basico.git](https://github.com/Apolline97/crm-basico.git)
-    cd crm-basico
-    ```
+Sigue estos pasos para desplegar el proyecto en local:
 
-2.  **Instalar dependencias de PHP:**
-    ```bash
-    composer install
-    ```
-
-3.  **Configurar entorno:**
-    * Duplica el archivo `.env.example` y renómbralo a `.env`.
-    * Configura tus credenciales de base de datos en el `.env`:
-        ```ini
-        DB_CONNECTION=mysql
-        DB_HOST=127.0.0.1
-        DB_PORT=3306
-        DB_DATABASE=crm_db
-        DB_USERNAME=root
-        DB_PASSWORD=
-        ```
-
-4.  **Generar clave de aplicación:**
-    ```bash
-    php artisan key:generate
-    ```
-
-5.  **Migrar la base de datos:**
-    ```bash
-    php artisan migrate
-    ```
-
-6.  **Iniciar el servidor:**
-    ```bash
-    php artisan serve
-    ```
+### 1. Clonar el repositorio
+```bash
+git clone <URL_DE_TU_REPOSITORIO>
+cd <CARPETA_DEL_PROYECTO>
