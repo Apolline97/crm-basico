@@ -2,6 +2,8 @@
 
 Este proyecto es un sistema de gestión CRM desarrollado en Laravel. Incluye gestión de clientes con imágenes, productos con fichas técnicas en PDF, y un sistema de roles y permisos (Admin vs Empleado).
 
+---
+
 ## 🚀 Funcionalidades Implementadas
 
 ### 1. Gestión de Clientes (CRUD Completo)
