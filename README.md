@@ -29,12 +29,68 @@ Este proyecto es un sistema de gestión CRM desarrollado en Laravel. Incluye ges
 
 ---
 
+## 🛠️ Instalación y Configuración
+
+Para poner en marcha el proyecto en un entorno local, sigue estos pasos:
+
+### 1. Instalar dependencias
+
+Abre una terminal en la carpeta del proyecto y ejecuta:
+
+```bash
+composer install
+```
+
+### 2. Configurar el entorno
+
+Duplica el archivo `.env.example`, renómbralo a `.env` y configura tu conexión a la base de datos:
+
+```ini
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=crm_db
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+> Asegúrate de crear una base de datos vacía llamada `crm_db` en tu gestor SQL.
+
+### 3. Generar clave de aplicación
+
+```bash
+php artisan key:generate
+```
+
+### 4. Base de datos y usuarios ⚠️
+
+Este comando crea las tablas e inserta automáticamente los usuarios Admin y Empleado:
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+### 5. Activar almacenamiento de archivos
+
+Para que se visualicen correctamente las imágenes de perfil y los PDFs, es obligatorio ejecutar:
+
+```bash
+php artisan storage:link
+```
+
+### 6. Ejecutar el servidor
+
+```bash
+php artisan serve
+```
+
+Accede a la aplicación en: `http://127.0.0.1:8000`
+
+---
+
 ## 👤 Usuarios y Contraseñas
 
-- ADMINISTRADOR (Acceso total (Ver, Crear, Editar y Borrar))
-  - Mail: admin@prueba.com
-  - Contraseña: 12345678
- 
-- EMPLEADO (Acceso restringido (NO puede borrar))
-  - Mail: empleado@prueba.com
-  - Contraseña: 12345678
+| Rol | Email | Contraseña | Permisos |
+|---|---|---|---|
+| **Administrador** | admin@prueba.com | 12345678 | Ver, Crear, Editar y **Borrar** |
+| **Empleado** | empleado@prueba.com | 12345678 | Ver, Crear y Editar (**NO puede Borrar**) |
