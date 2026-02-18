@@ -31,6 +31,9 @@ Este proyecto es un sistema de gestión CRM desarrollado en Laravel. Incluye ges
 
 ## 👤 Usuarios y Contraseñas
 
-**Rol**              **Email**               **Contraseña**  **Qué puede hacer**
-ADMINISTRADOR        admin@prueba.com        12345678        Acceso total (Ver, Crear, Editar y Borrar)
-EMPLEADO             empleado@prueba.com     12345678        Acceso restringido (NO puede borrar)
+- ADMINISTRADOR (Acceso total (Ver, Crear, Editar y Borrar))
+  - Mail: admin@prueba.com
+  - Contraseña: 12345678
+- - ADMINISTRADOR (Acceso total (Ver, Crear, Editar y Borrar))
+  - Mail: empleado@prueba.com
+  - Contraseña: 12345678
