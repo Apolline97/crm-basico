@@ -1,13 +1,15 @@
 @extends('layout')
 
 @section('content')
-    <h1>Lista de Clientes</h1>
-    <a href="{{ route('clientes.create') }}" class="btn btn-primary mb-3">Nuevo Cliente</a>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Lista de Clientes</h1>
+        <a href="{{ route('clientes.create') }}" class="btn btn-primary">Nuevo Cliente</a>
+    </div>
 
-    <table class="table table-bordered">
-        <thead>
+    <table id="tabla-clientes" class="table table-striped table-bordered" style="width:100%">
+    <thead>
             <tr>
-                <th>Nombre</th>
+                <th>Foto</th> <th>Nombre</th>
                 <th>Email</th>
                 <th>Acciones</th>
             </tr>
@@ -15,6 +17,15 @@
         <tbody>
             @foreach ($clientes as $cliente)
             <tr>
+                <td>
+                    @if($cliente->imagen)
+                        {{-- Mostramos la foto --}}
+                        <img src="{{ asset('storage/' . $cliente->imagen) }}" alt="Foto" width="50" class="rounded-circle">
+                    @else
+                        {{-- Foto por defecto si no tiene --}}
+                        <span class="badge bg-secondary">Sin foto</span>
+                    @endif
+                </td>
                 <td>{{ $cliente->nombre }}</td>
                 <td>{{ $cliente->email }}</td>
                 <td>
@@ -22,11 +33,23 @@
                     <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST" style="display:inline">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Borrar cliente?')">Borrar</button>
                     </form>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#tabla-clientes').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
+                }
+            });
+        });
+    </script>
 @endsection

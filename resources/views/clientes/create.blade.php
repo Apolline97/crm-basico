@@ -2,7 +2,21 @@
 
 @section('content')
     <h1>Crear Cliente</h1>
-    <form action="{{ route('clientes.store') }}" method="POST">
+
+    {{-- BLOQUE PARA MOSTRAR ERRORES --}}
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    {{-- FIN DEL BLOQUE --}}
+    
+    {{-- IMPORTANTE: enctype="multipart/form-data" es obligatorio para subir fotos --}}
+    <form action="{{ route('clientes.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label>Nombre</label>
@@ -16,6 +30,12 @@
             <label>Teléfono</label>
             <input type="text" name="telefono" class="form-control">
         </div>
+        
+        <div class="mb-3">
+            <label>Foto de Perfil (Opcional)</label>
+            <input type="file" name="imagen" class="form-control" accept="image/*">
+        </div>
+
         <div class="mb-3">
             <label>Dirección</label>
             <textarea name="direccion" class="form-control"></textarea>

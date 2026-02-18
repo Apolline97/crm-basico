@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cliente; // Importamos el modelo Cliente
+use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage; // <--- IMPORTANTE: Necesario para manejar archivos
 
 class ClienteController extends Controller
 {
     // 1. Mostrar la lista de clientes
     public function index()
     {
-        $clientes = Cliente::all(); // Coge todos los clientes de la BBDD
-        return view('clientes.index', compact('clientes')); // Se los pasa a la vista
+        $clientes = Cliente::all();
+        return view('clientes.index', compact('clientes'));
     }
 
     // 2. Mostrar el formulario para crear nuevo
@@ -20,20 +21,29 @@ class ClienteController extends Controller
         return view('clientes.create');
     }
 
-    // 3. Guardar el cliente nuevo en la BBDD
+    // 3. Guardar el cliente nuevo en la BBDD (CON FOTO)
     public function store(Request $request)
     {
-        // Validamos que los datos sean correctos
+        // Validamos datos + imagen (opcional, max 2MB, tipos jpg,png,etc)
         $request->validate([
             'nombre' => 'required',
             'email' => 'required|email',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', 
         ]);
 
-        // Guardamos en la base de datos
-        Cliente::create($request->all());
+        // Recogemos todos los datos excepto la imagen (la tratamos aparte)
+        $datos = $request->except('imagen');
 
-        // Redirigimos a la lista con un mensaje
-        return redirect()->route('clientes.index');
+        // Si hay foto, la guardamos
+        if ($request->hasFile('imagen')) {
+            // Guarda en storage/app/public/clientes y devuelve la ruta
+            $datos['imagen'] = $request->file('imagen')->store('clientes', 'public');
+        }
+
+        // Guardamos en BD con la ruta de la imagen incluida
+        Cliente::create($datos);
+
+        return redirect()->route('clientes.index')->with('success', 'Cliente creado con éxito');
     }
 
     // 4. Mostrar formulario de editar
@@ -43,26 +53,45 @@ class ClienteController extends Controller
         return view('clientes.edit', compact('cliente'));
     }
 
-    // 5. Actualizar los datos de un cliente
+    // 5. Actualizar los datos (GESTIONANDO LA FOTO)
     public function update(Request $request, $id)
     {
         $request->validate([
             'nombre' => 'required',
             'email' => 'required|email',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $cliente = Cliente::find($id);
-        $cliente->update($request->all());
+        $datos = $request->except('imagen');
 
-        return redirect()->route('clientes.index');
+        // Si suben una nueva imagen
+        if ($request->hasFile('imagen')) {
+            // 1. Borramos la imagen antigua si existe
+            if ($cliente->imagen) {
+                Storage::disk('public')->delete($cliente->imagen);
+            }
+            // 2. Guardamos la nueva
+            $datos['imagen'] = $request->file('imagen')->store('clientes', 'public');
+        }
+
+        $cliente->update($datos);
+
+        return redirect()->route('clientes.index')->with('success', 'Cliente actualizado');
     }
 
-    // 6. Eliminar un cliente
+    // 6. Eliminar un cliente (Y SU FOTO)
     public function destroy($id)
     {
         $cliente = Cliente::find($id);
+
+        // Si el cliente tiene foto, la borramos del disco duro
+        if ($cliente->imagen) {
+            Storage::disk('public')->delete($cliente->imagen);
+        }
+
         $cliente->delete();
 
-        return redirect()->route('clientes.index');
+        return redirect()->route('clientes.index')->with('success', 'Cliente eliminado');
     }
 }
